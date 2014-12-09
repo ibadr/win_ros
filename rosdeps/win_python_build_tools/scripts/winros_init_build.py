@@ -49,9 +49,9 @@ def parse_args():
     parser.add_argument('-c', '--clean', action='store_true',
         help='remove build directory and configuration file [false].')
     parser.add_argument('-u', '--underlays', action='store', default='',
-        help='semi-colon list of catkin workspaces to utilise [/opt/ros/hydro]')
-    parser.add_argument('--track', action='store', default="hydro",
-        help='retrieve rosinstalls relevant to this track [groovy|hydro][hydro]')
+        help='semi-colon list of catkin workspaces to utilise [/opt/ros/indigo]')
+    parser.add_argument('--track', action='store', default="indigo",
+        help='retrieve rosinstalls relevant to this track [groovy|hydro][hydro][indigo]')
     return parser.parse_args()
 
 if __name__ == "__main__":
