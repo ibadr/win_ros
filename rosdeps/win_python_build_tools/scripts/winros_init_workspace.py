@@ -51,7 +51,7 @@ def parse_args():
     parser.add_argument('path', type=str, default=".",
         help='base path for the workspace')
     parser.add_argument('--track', action='store', default="",
-        help='retrieve rosinstalls relevant to this track [groovy|hydro]')
+        help='retrieve rosinstalls relevant to this track [groovy|hydro|indigo]')
     return parser.parse_args()
 
 def populate(base_path, rosinstall_file_uri):
@@ -91,13 +91,16 @@ if __name__ == "__main__":
         sys.exit(1)
     text = win_ros.write_setup_bat(base_path)
 
-    if args.track == "hydro":
-        populate(base_path, 'https://raw.github.com/ros-windows/win_ros/hydro-devel/msvc_hydro.rosinstall')
-        toplevel_cmake_url = 'https://raw.github.com/ros/catkin/0.5.69/cmake/toplevel.cmake'
+    if args.track == "indigo":
+        populate(base_path, 'https://raw.github.com/davidhodo/win_ros/indigo-devel/msvc_indigo.rosinstall')
+        toplevel_cmake_url = 'https://raw.github.com/ros/catkin/0.6.9/cmake/toplevel.cmake'
+    elif args.track == "hydro":
+        populate(base_path, 'https://raw.github.com/davidhodo/win_ros/hydro-devel/msvc_hydro.rosinstall')
+        toplevel_cmake_url = 'https://raw.github.com/ros/catkin/0.6.9/cmake/toplevel.cmake'
     elif args.track == "groovy":
-        populate(base_path, 'https://raw.github.com/ros-windows/win_ros/groovy-devel/msvc_groovy.rosinstall')
+        populate(base_path, 'https://raw.github.com/davidhodo/win_ros/groovy-devel/msvc_groovy.rosinstall')
         toplevel_cmake_url = 'https://raw.github.com/ros/catkin/groovy-devel/cmake/toplevel.cmake'
     else:
-        toplevel_cmake_url = 'https://raw.github.com/ros/catkin/0.5.69/cmake/toplevel.cmake'
+        toplevel_cmake_url = 'https://raw.github.com/ros/catkin/0.6.9/cmake/toplevel.cmake'
 
     win_ros.write_toplevel_cmake(os.path.join(base_path, 'src'), toplevel_cmake_url)
