@@ -1,7 +1,7 @@
 = Win-Ros =
 
-This stack provides resources for developing with ros on windows via:
+ROS support on Windows
 
-* Qt + Mingw cross compiler on linux
-* Msvc compiler on windows (v2010)
-
+* Develop from ROS indigo
+* Use MSVC2013 as native compiler on Windows
+* Basic features: roscore, roslaunch ...
