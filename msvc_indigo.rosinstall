@@ -14,6 +14,6 @@
 {'git': {'local-name': 'message_runtime', 'version': '0.4.12', 'uri':'https://github.com/ros/message_runtime.git'}},
 {'git': {'local-name': 'std_msgs', 'version': '0.5.9', 'uri':'https://github.com/ros/std_msgs.git'}},
 {'git': {'local-name': 'common_msgs', 'version': '1.11.6', 'uri':'https://github.com/ros/common_msgs.git'}},
-{'git': {'local-name': 'actionlib', 'version': 'indigo-devel', 'uri':'https://github.com/ros/actionlib.git'}},
+{'git': {'local-name': 'actionlib', 'version': '1.11.2', 'uri':'https://github.com/ros-windows/actionlib.git'}},
 {'git': {'local-name': 'win_ros', 'version': 'indigo-devel', 'uri':'https://github.com/davidhodo/win_ros.git'}},
 ]
