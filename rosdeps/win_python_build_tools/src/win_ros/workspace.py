@@ -51,48 +51,19 @@ REM command line environment.
     home_drive = os.environ['HOMEDRIVE']
     program_files = home_drive + r'\Program Files'
     program_files_x86 = home_drive + r'\Program Files (x86)'
-    windows_sdk_env = program_files + r'\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd';
-    visual_studio_ten_env = program_files + r'\Microsoft Visual Studio 10.0\VC\vcvarsall.bat';
-    visual_studio_ten_env_x86 = program_files_x86 + r'\Microsoft Visual Studio 10.0\VC\vcvarsall.bat';
-    wordpad_path = program_files + r'\Windows NT\Accessories\wordpad.exe';
-    wordpad_path_x86 = program_files_x86 + r'\Windows NT\Accessories\wordpad.exe';
-    notepp_path = program_files + r'\Notepad++\notepad++.exe';
-    notepp_path_x86 = program_files_x86 + r'\Notepad++\notepad++.exe';
+    visual_studio_12_env_x86 = program_files_x86 + r'\Microsoft Visual Studio 12.0\VC\vcvarsall.bat';
     
     text += "\n"
-    text += "@REM Utility variables\n"
-    if os.path.isfile(wordpad_path):
-        text += '@doskey wordpad="'+wordpad_path+'" $1\n'
-    else:
-        text += '@doskey wordpad="'+wordpad_path_x86+'" $1\n'
-    if os.path.isfile(notepp_path):
-        text += '@doskey notepp="'+notepp_path+'" $1\n'
-    elif os.path.isfile(notepp_path_x86):
-        text += '@doskey notepp="'+notepp_path_x86+'" $1\n'
-    else:
-        text += '@REM doskey notepp="'+notepp_path+'" $1\n'
-    text += "\n"
-    if os.path.isfile(windows_sdk_env):
-        text += "@REM Environment settings for Windows SDK\n"
-        text += '@call "' + windows_sdk_env + '" /x86 /Release\n'
-        text += "@REM The sdk is the default generator for winros,\n"
-        text += "@REM To use visual studio, uncomment one of the following.\n"
-        text += '@REM "' + visual_studio_ten_env + '" x86\n'
-        text += '@REM "' + visual_studio_ten_env_x86 + '" x86\n'
-    elif os.path.isfile(visual_studio_ten_env):
+
+    if os.path.isfile(visual_studio_12_env_x86):
         text += "@REM Environment settings for Visual Studio\n"
-        text += '@call "' + visual_studio_ten_env + '" x86\n'
-        text += '@REM call "' + windows_sdk_env + '" /x86 /Release\n'
-    elif os.path.isfile(visual_studio_ten_env_x86):
-        text += "@REM Environment settings for Visual Studio\n"
-        text += '@call "' + visual_studio_ten_env_x86 + '" x86\n'
+        text += '@call "' + visual_studio_12_env_x86 + '" x86\n'
         text += '@REM call "' + windows_sdk_env + '" /x86 /Release\n'
     else:
-        text += "@REM Could not find windows sdk or visual studio, please\n"
-        text += "@REM install and configure by hand [Windows SDK/Visual Studio]\n"
+        text += "@REM Could not find Visual Studio 2013, please\n"
+        text += "@REM install and configure by hand [Visual Studio 2013]\n"
         text += '@REM call "' + windows_sdk_env + '" /x86 /Release\n'
-        text += '@REM "' + visual_studio_ten_env + '" x86\n'
-        text += '@REM "' + visual_studio_ten_env_x86 + '" x86\n'
+        text += '@REM "' + visual_studio_12_env_x86 + '" x86\n'
     text += '@REM Colours are a god awful ugly canary yellow or vomit green\n'
     text += '@color 7\n'
     text += "\n"
