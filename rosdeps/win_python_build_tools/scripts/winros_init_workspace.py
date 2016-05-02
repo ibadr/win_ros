@@ -57,16 +57,16 @@ def parse_args():
 def populate(base_path, rosinstall_file_uri):
     '''
       @param rosinstall_file_uri : the uri for the rosinstall file
-      @param distro : whether it is win_ros.STABLE or win_ros.UNSTABLE 
+      @param distro : whether it is win_ros.STABLE or win_ros.UNSTABLE
     '''
-    wstool_arguments = ['wstool', 
-                        'merge', 
+    wstool_arguments = ['wstool',
+                        'merge',
                         rosinstall_file_uri,
                         "--target-workspace=%s"%os.path.join(base_path, 'src')
                         ]
     wstool.wstool_cli.wstool_main(wstool_arguments)
-    wstool_arguments = ['wstool', 
-                        'update', 
+    wstool_arguments = ['wstool',
+                        'update',
                         "--target-workspace=%s"%os.path.join(base_path, 'src')
                         ]
     wstool.wstool_cli.wstool_main(wstool_arguments)
@@ -79,7 +79,8 @@ if __name__ == "__main__":
         base_path = os.path.abspath(args.path)
     if not os.path.isdir(base_path):
         os.mkdir(base_path)
-    os.mkdir(os.path.join(base_path, 'src'))
+    if not os.path.isdir(os.path.join(base_path, 'src')):
+        os.mkdir(os.path.join(base_path, 'src'))
     wstool_arguments = ['wstool', 'init', os.path.join(base_path, 'src')]
     try:
         wstool.wstool_cli.wstool_main(wstool_arguments)
@@ -92,7 +93,7 @@ if __name__ == "__main__":
     text = win_ros.write_setup_bat(base_path)
 
     if args.track == "indigo":
-        populate(base_path, 'https://raw.github.com/davidhodo/win_ros/indigo-devel/msvc_indigo.rosinstall')
+        populate(base_path, 'https://raw.github.com/ibadr/win_ros/indigo-devel/msvc_indigo.rosinstall')
         toplevel_cmake_url = 'https://raw.github.com/ros/catkin/0.6.9/cmake/toplevel.cmake'
     elif args.track == "hydro":
         populate(base_path, 'https://raw.github.com/davidhodo/win_ros/hydro-devel/msvc_hydro.rosinstall')
