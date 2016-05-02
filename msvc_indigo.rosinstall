@@ -9,6 +9,7 @@
 {'git': {'local-name': 'genpy', 'version': '0.5.3', 'uri':'https://github.com/ros/genpy.git'}},
 {'git': {'local-name': 'genlisp', 'version': '0.4.14', 'uri':'https://github.com/ros/genlisp.git'}},
 {'git': {'local-name': 'roscpp_core', 'version': '0.5.4', 'uri':'https://github.com/ros/roscpp_core.git'}},
+{'git': {'local-name': 'ros_comm_msgs', 'version': 'indigo-devel', 'uri':'https://github.com/ros/ros_comm_msgs'}},
 {'git': {'local-name': 'ros_comm', 'version': 'indigo-devel', 'uri':'https://github.com/ros/ros_comm'}},
 {'git': {'local-name': 'message_generation', 'version': '0.2.10', 'uri':'https://github.com/ros/message_generation.git'}},
 {'git': {'local-name': 'message_runtime', 'version': '0.4.12', 'uri':'https://github.com/ros/message_runtime.git'}},
