@@ -85,9 +85,18 @@ def write_setup_bat(base_path):
 def write_toplevel_cmake(base_path, toplevel_cmake_url):
 
     u = urlopen( toplevel_cmake_url )
-    local_file = open(os.path.join(base_path, 'CMakeLists.txt'), 'wb')
+    file_name = os.path.join(base_path, 'CMakeLists.txt')
+    local_file = open(file_name, 'wb')
     local_file.write(u.read())
     local_file.close()
+    # replace catkin_find_pkg with catkin_find_pkg.bat to work on windows
+    temp_file = open( file_name, 'rt' )
+    lines = temp_file.readlines()
+    temp_file.close()
+    temp_file = open( file_name, 'w+t' )
+    for line in lines:
+        temp_file.write(line.replace('catkin_find_pkg', 'catkin_find_pkg.bat'))
+    temp_file.close()
 
 
 def is_invalid_workspace(src_path):
