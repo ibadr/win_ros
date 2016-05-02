@@ -38,7 +38,7 @@ import sys
 import os
 import subprocess
 import shutil
-import cmake_var
+from .cmake_var import get_value
 import glob
 
 ##############################################################################
@@ -90,7 +90,7 @@ def parent_directory(path):
 def copy_debuginfo(build_path):
     ws_path = os.path.join(parent_directory(build_path))
     pdb_path = os.path.join(ws_path, 'devel', 'bin', '*.pdb')
-    install_root = cmake_var.get_value(os.path.join(ws_path, 'config.cmake'), 'INSTALL_ROOT')
+    install_root = get_value(os.path.join(ws_path, 'config.cmake'), 'INSTALL_ROOT')
     install_path = os.path.join(install_root, 'bin')
     pdb_files = glob.glob(pdb_path)
     print("Install the debug info files...")

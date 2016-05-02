@@ -48,11 +48,11 @@ def get_value(pathname, keyname):
     except:
         print("File not found.")
         return buff
-    
+
     condition = re.compile('^.+', re.M)
     lines = condition.findall(buff)
     vars = []
-    AssembleMode = Enum(["None", "Symbol", "Sentence"])
+    AssembleMode = Enum(["Non", "Symbol", "Sentence"])
 
     try:
         iter_lines = iter(lines)
@@ -60,7 +60,7 @@ def get_value(pathname, keyname):
             line = i.strip()
             if line[0] == '#':
                 continue
-            
+
             tokens = re.split('[()]+', i)
             token = tokens[0].lower()
             command = token.strip()
@@ -68,29 +68,29 @@ def get_value(pathname, keyname):
             # filter 'set' command
             if command != 'set':
                 continue
-            
+
             runner = 0;
             token = tokens[1]
             length = len(token)
-            
+
             ##############################
             # Segment description of set command
             ##############################
 
-            mode = AssembleMode.None
+            mode = AssembleMode.Non
             word = ""
             words = []
-            
+
             while runner < length:
                 if token[runner] == ' ':
                     if mode == AssembleMode.Symbol:
                         words.append(word)
                         word = ""
-                        mode = AssembleMode.None
+                        mode = AssembleMode.Non
                     elif mode == AssembleMode.Sentence:
                         word += token[runner]
                 elif token[runner] == '"':
-                    if mode == AssembleMode.None:
+                    if mode == AssembleMode.Non:
                         mode = AssembleMode.Sentence
                     elif mode == AssembleMode.Symbol:
                         words.append(word)
@@ -99,12 +99,12 @@ def get_value(pathname, keyname):
                     elif mode == AssembleMode.Sentence:
                         words.append(word)
                         word = ""
-                        mode = AssembleMode.None
+                        mode = AssembleMode.Non
                 else:
                     word += token[runner]
-                    if mode == AssembleMode.None:
+                    if mode == AssembleMode.Non:
                         mode = AssembleMode.Symbol
-                        
+
                 runner += 1
 
             if len(words) < 2:
@@ -113,7 +113,7 @@ def get_value(pathname, keyname):
             ##############################
             # Extract value of variable
             ##############################
-            
+
             try:
                 idx = words.index('CACHE')
                 runner = 0
@@ -124,7 +124,7 @@ def get_value(pathname, keyname):
                     runner += 1
             except:
                 val = words[1]
-                
+
             dic = {"key":words[0], "val":val}
             vars.append(dic)
 

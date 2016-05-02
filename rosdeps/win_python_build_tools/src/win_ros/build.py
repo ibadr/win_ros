@@ -66,7 +66,7 @@ def write_cmake_files(ws_path, track, config_underlays):
     contents = fill_in_template(template, config_rosdeps_root, config_install_root, config_underlays)
     config_cmake_file = os.path.join( ws_path, "config.cmake")
     try:
-        f = open(config_cmake_file, 'w')
+        f = open(config_cmake_file, 'wb')
         f.write(contents.encode('utf-8'))
     finally:
         f.close()

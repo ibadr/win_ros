@@ -36,7 +36,7 @@
 
 import sys
 import os
-import urllib2
+from urllib.request import urlopen
 
 ##############################################################################
 # Private Functions
@@ -52,7 +52,8 @@ REM command line environment.
     program_files = home_drive + r'\Program Files'
     program_files_x86 = home_drive + r'\Program Files (x86)'
     visual_studio_12_env_x86 = program_files_x86 + r'\Microsoft Visual Studio 12.0\VC\vcvarsall.bat';
-    
+    windows_sdk_env = program_files + r'\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd';
+
     text += "\n"
 
     if os.path.isfile(visual_studio_12_env_x86):
@@ -83,8 +84,8 @@ def write_setup_bat(base_path):
 
 def write_toplevel_cmake(base_path, toplevel_cmake_url):
 
-    u = urllib2.urlopen( toplevel_cmake_url )
-    local_file = open(os.path.join(base_path, 'CMakeLists.txt'), 'w')
+    u = urlopen( toplevel_cmake_url )
+    local_file = open(os.path.join(base_path, 'CMakeLists.txt'), 'wb')
     local_file.write(u.read())
     local_file.close()
 
@@ -92,7 +93,7 @@ def write_toplevel_cmake(base_path, toplevel_cmake_url):
 def is_invalid_workspace(src_path):
     '''
       Checks for source directory and source CMakeLists.txt.
-      
+
       @return Error string if not valid, otherwise None
     '''
     error_str = None

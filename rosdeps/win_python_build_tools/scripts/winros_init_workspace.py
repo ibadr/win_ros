@@ -38,7 +38,7 @@ import win_ros
 import argparse
 import wstool.wstool_cli
 from rosinstall.helpers import ROSInstallException
-from rosinstall.common import MultiProjectException
+from wstool.common import MultiProjectException
 
 def parse_args():
     parser = argparse.ArgumentParser(description="\
