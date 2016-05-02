@@ -28,7 +28,7 @@ IF NOT EXIST %cd%\scripts\winros_wstool.py (
   call git clone https://github.com/ros/rospkg.git
   cd rospkg & call git checkout 408b3b22b871f2610a1826deeae28f70255250e3 & cd ..
   call git clone https://github.com/vcstools/vcstools.git
-  cd vcstools & call git checkout 0.1.29 & cd ..  
+  cd vcstools & call git checkout 0.1.29 & cd ..
   call git clone https://github.com/ros-windows/rosinstall.git
   cd rosinstall & git checkout encoding-fix & cd ..
   rem cd rosinstall & call git checkout 0.6.25 & cd ..
@@ -91,7 +91,7 @@ goto End
 
 :Uninstall
 echo "Uninstalling files."
-for /f %%a in ('cat install.record') do rm -f %%a
+for /f %%a in ('type install.record') do del %%a
 goto End
 
 :Upload

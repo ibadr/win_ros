@@ -43,11 +43,11 @@ goto End
 
 :Uninstall
 echo "Uninstalling files."
-for /f %%a in ('cat install.record') do rm -f %%a
+for /f %%a in ('type install.record') do del %%a
 goto End
 
 :Clean
-rm -f %cd%\install.record
+# del -f %cd%\install.record
 goto End
 
 :End
