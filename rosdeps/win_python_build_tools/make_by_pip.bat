@@ -27,7 +27,7 @@ IF NOT EXIST %PYTHON_PATH%\scripts\winros_wstool.py (
   pip install vcstools rosinstall wstool rospkg catkin_pkg empy
   copy %PYTHON_PATH%\scripts\wstool %PYTHON_PATH%\scripts\winros_wstool.py
   copy %PYTHON_PATH%\scripts\rosversion %PYTHON_PATH%\scripts\winros_rosversion.py
-  copy %PYTHON_PATH%\scripts\catkin_create_pkg %PYTHON_PATH%\scripts\winros_catkin_create_pkg.py
+  copy %PYTHON_PATH%\scripts\catkin_create_pkg %PYTHON_PATH%\scripts\catkin_create_pkg.py
   copy %PYTHON_PATH%\scripts\catkin_find_pkg %PYTHON_PATH%\scripts\catkin_find_pkg.py
 ) else (
   echo.
